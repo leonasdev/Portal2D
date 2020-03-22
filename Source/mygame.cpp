@@ -26,7 +26,7 @@
  *         demonstrate the use of states.
  *      2. Demo the use of CInteger in CGameStateRun.
  *   2005-09-13
- *      Rewrite the codes for CBall and CEraser.
+ *      Rewrite the codes for CBall and CCharacter.
  *   2005-09-20 V4.2Beta1.
  *   2005-09-29 V4.2Beta2.
  *      1. Add codes to display IDC_GAMECURSOR in GameStateRun.
@@ -309,7 +309,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
     // 完成部分Loading動作，提高進度
     //
     ShowInitProgress(50);
-    Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+    //Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
     //
     // 繼續載入其他資料
     //
@@ -333,48 +333,62 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     const char KEY_UP    = 0x26; // keyboard上箭頭
     const char KEY_RIGHT = 0x27; // keyboard右箭頭
     const char KEY_DOWN  = 0x28; // keyboard下箭頭
+    const int KEY_SPACE = 32;  // keyboard空白鍵
+    const int KEY_W = 87;  // keyboard W
+    const int KEY_A = 65;  // keyboard A
+    const int KEY_S = 83;  // keyboard S
+    const int KEY_D = 68;  // keyboard D
 
-    if (nChar == KEY_LEFT)
+
+
+    if (nChar == KEY_LEFT || nChar == KEY_A)
         eraser.SetMovingLeft(true);
 
-    if (nChar == KEY_RIGHT)
+    if (nChar == KEY_RIGHT || nChar == KEY_D)
         eraser.SetMovingRight(true);
 
-    if (nChar == KEY_UP)
+    if (nChar == KEY_UP || nChar == KEY_SPACE || nChar == KEY_W)
         eraser.SetMovingUp(true);
 
-    if (nChar == KEY_DOWN)
+    if (nChar == KEY_DOWN || nChar == KEY_S)
         eraser.SetMovingDown(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-    const char KEY_LEFT  = 0x25; // keyboard左箭頭
-    const char KEY_UP    = 0x26; // keyboard上箭頭
+    const char KEY_LEFT = 0x25; // keyboard左箭頭
+    const char KEY_UP = 0x26; // keyboard上箭頭
     const char KEY_RIGHT = 0x27; // keyboard右箭頭
-    const char KEY_DOWN  = 0x28; // keyboard下箭頭
+    const char KEY_DOWN = 0x28; // keyboard下箭頭
+    const int KEY_SPACE = 32;  // keyboard空白鍵
+    const int KEY_W = 87;  // keyboard W
+    const int KEY_A = 65;  // keyboard A
+    const int KEY_S = 83;  // keyboard S
+    const int KEY_D = 68;  // keyboard D
 
-    if (nChar == KEY_LEFT)
+
+
+    if (nChar == KEY_LEFT || nChar == KEY_A)
         eraser.SetMovingLeft(false);
 
-    if (nChar == KEY_RIGHT)
+    if (nChar == KEY_RIGHT || nChar == KEY_D)
         eraser.SetMovingRight(false);
 
-    if (nChar == KEY_UP)
+    if (nChar == KEY_UP || nChar == KEY_SPACE || nChar == KEY_W)
         eraser.SetMovingUp(false);
 
-    if (nChar == KEY_DOWN)
+    if (nChar == KEY_DOWN || nChar == KEY_S)
         eraser.SetMovingDown(false);
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-    eraser.SetMovingLeft(true);
+    //eraser.SetMovingLeft(true);
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-    eraser.SetMovingLeft(false);
+    //eraser.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -384,12 +398,12 @@ void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-    eraser.SetMovingRight(true);
+    //eraser.SetMovingRight(true);
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-    eraser.SetMovingRight(false);
+    //eraser.SetMovingRight(false);
 }
 
 void CGameStateRun::OnShow()

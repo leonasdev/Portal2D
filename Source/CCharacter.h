@@ -5,10 +5,10 @@ namespace game_framework
 // 看懂就可以改寫成自己的程式了
 /////////////////////////////////////////////////////////////////////////////
 
-class CEraser
+class CCharacter
 {
     public:
-        CEraser();
+        CCharacter();
         int  GetX1();					// 擦子左上角 x 座標
         int  GetY1();					// 擦子左上角 y 座標
         int  GetX2();					// 擦子右下角 x 座標

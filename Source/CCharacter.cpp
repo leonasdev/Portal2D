@@ -4,41 +4,41 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CEraser.h"
+#include "CCharacter.h"
 #include <iostream>
 
 namespace game_framework
 {
 /////////////////////////////////////////////////////////////////////////////
-// CEraser: Eraser class
+// CCharacter: Eraser class
 /////////////////////////////////////////////////////////////////////////////
 
-CEraser::CEraser()
+CCharacter::CCharacter()
 {
     Initialize();
 }
 
-int CEraser::GetX1()
+int CCharacter::GetX1()
 {
     return x;
 }
 
-int CEraser::GetY1()
+int CCharacter::GetY1()
 {
     return y;
 }
 
-int CEraser::GetX2()
+int CCharacter::GetX2()
 {
     return x + animation.Width();
 }
 
-int CEraser::GetY2()
+int CCharacter::GetY2()
 {
     return y + animation.Height();
 }
 
-void CEraser::Initialize()
+void CCharacter::Initialize()
 {
     const int INITIAL_VELOCITY = 10;	// 初始上升速度
 
@@ -54,7 +54,7 @@ void CEraser::Initialize()
     rising = isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 }
 
-void CEraser::LoadBitmap()
+void CCharacter::LoadBitmap()
 {
     animation.AddBitmap(IDB_character, RGB(255, 255, 255));	//原本不移動
     animation.AddBitmap(IDB_moveright, RGB(255, 255, 255));	//往右
@@ -63,7 +63,7 @@ void CEraser::LoadBitmap()
     //animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
 }
 
-void CEraser::OnMove()
+void CCharacter::OnMove()
 {
     const int STEP_SIZE = 5;
     animation.SetDelayCount(1);
@@ -108,7 +108,7 @@ void CEraser::OnMove()
 //animation.Reset();
 /*  if (isMovingDown)
       y += STEP_SIZE;*/
-void CEraser::jump()
+void CCharacter::jump()
 {
     if (rising)  			// 上升狀態
     {
@@ -142,33 +142,33 @@ void CEraser::jump()
     }
 }
 
-void CEraser::SetMovingDown(bool flag)
+void CCharacter::SetMovingDown(bool flag)
 {
     isMovingDown = flag;
 }
 
-void CEraser::SetMovingLeft(bool flag)
+void CCharacter::SetMovingLeft(bool flag)
 {
     isMovingLeft = flag;
 }
 
-void CEraser::SetMovingRight(bool flag)
+void CCharacter::SetMovingRight(bool flag)
 {
     isMovingRight = flag;
 }
 
-void CEraser::SetMovingUp(bool flag)
+void CCharacter::SetMovingUp(bool flag)
 {
     isMovingUp = flag;
 }
 
-void CEraser::SetXY(int nx, int ny)
+void CCharacter::SetXY(int nx, int ny)
 {
     x = nx;
     y = ny;
 }
 
-void CEraser::OnShow()
+void CCharacter::OnShow()
 {
     animation.SetTopLeft(x, y);
     animation.OnShow();
