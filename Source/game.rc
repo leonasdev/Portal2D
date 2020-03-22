@@ -108,9 +108,9 @@ IDB_level1              BITMAP                  "..\\res\\background_HD.bmp"
 
 IDB_character           BITMAP                  "..\\res\\character.bmp"
 
-IDB_moveright           BITMAP                  "..\\res\\moveright.bmp"
+IDB_moveright           BITMAP                  "..\\res\\character_right.bmp"
 
-IDB_moveleft            BITMAP                  "..\\res\\moveleft.bmp"
+IDB_moveleft            BITMAP                  "..\\res\\character_left.bmp"
 
 IDB_moveup              BITMAP                  "..\\res\\character.bmp"
 
