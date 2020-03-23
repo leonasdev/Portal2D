@@ -222,7 +222,6 @@ void CGameStateRun::OnBeginState()
     //    ball[i].SetDelay(x_pos);
     //    ball[i].SetIsAlive(true);
     //}
-
     eraser.Initialize();
     //background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
     //help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
@@ -302,7 +301,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
     //for (i = 0; i < NUMBALLS; i++)
     //    ball[i].LoadBitmap();								// 載入第i個球的圖形
-
+	button.LoadBitmap();
     eraser.LoadBitmap();
     //background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
     //
@@ -432,9 +431,10 @@ void CGameStateRun::OnShow()
     corner.ShowBitmap();*/
 
     //bball.OnShow();						// 貼上彈跳的球
-    level.ShowBitmap();
 
-    eraser.OnShow();					// 貼上擦子
+    level.ShowBitmap();		//關卡圖
+    eraser.OnShow();		//貼上擦子
 
+	button.OnShow();
 }
 }

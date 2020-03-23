@@ -40,6 +40,7 @@
 
 #include "CCharacter.h"
 #include "CBall.h"
+#include "button.h"
 #include "CBouncingBall.h"
 
 namespace game_framework {
@@ -98,11 +99,13 @@ namespace game_framework {
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
-		CCharacter			eraser;		// 拍子
+		CCharacter		eraser;		// 拍子
 		CInteger		hits_left;	// 剩下的撞擊數
 		CBouncingBall   bball;		// 反覆彈跳的球
 
 		CMovingBitmap	level;		// 關卡圖
+		button	button;
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
