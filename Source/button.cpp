@@ -15,8 +15,8 @@ namespace game_framework {
 	button::button()
 	{
 		is_click = false;
-		x = 500;
-		y = 530;//eraser->GetY2();//dx = dy = index = delay_counter = 0;
+		x = 350;
+		y = 200;//eraser->GetY2();//dx = dy = index = delay_counter = 0;
 	}
 
 	bool button::HitCharacter(CCharacter *eraser)

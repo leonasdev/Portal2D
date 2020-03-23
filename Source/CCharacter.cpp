@@ -42,9 +42,9 @@ void CCharacter::Initialize()
 {
     const int INITIAL_VELOCITY = 10;	// 初始上升速度
 
-    const int X_POS = 280;
-    const int Y_POS = SIZE_Y - 130;
-    const int FLOOR = SIZE_Y - 130;				// 地板座標
+    const int X_POS = 50;
+    const int Y_POS = SIZE_Y - 92;
+    const int FLOOR = SIZE_Y - 92;				// 地板座標
 
     x = X_POS;
     y = Y_POS;
@@ -74,9 +74,9 @@ void CCharacter::OnMove()
         {
             x += STEP_SIZE;
             animation.SelectBitmap(1);
-			if (x >= SIZE_X - 50 - animation.Width()) //牆的厚度:50
+			if (x >= SIZE_X - 8 - animation.Width()) //牆的厚度:8
 			{
-				x = SIZE_X - 50 - animation.Width();
+				x = SIZE_X - 8 - animation.Width();
 			}
 			
         }
@@ -85,9 +85,9 @@ void CCharacter::OnMove()
         {
             x -= STEP_SIZE;
             animation.SelectBitmap(2);
-			if (x <= 50)
+			if (x <= 8)//牆的厚度:8
 			{
-				x = 50;
+				x = 8;
 			}
         }
 
