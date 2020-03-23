@@ -114,7 +114,7 @@ IDB_moveleft            BITMAP                  "..\\res\\character_left.bmp"
 
 IDB_moveup              BITMAP                  "..\\res\\character.bmp"
 
-IDB_Button              BITMAP                  "C:\\Users\\LAB1223\\Desktop\\Portal2D\\RES\\button_up.bmp"
+IDB_Button              BITMAP                  "..\\res\\button_up.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
