@@ -63,7 +63,7 @@ void CCharacter::LoadBitmap()
     //animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
 }
 
-void CCharacter::OnMove()
+void CCharacter::OnMove(Map* map)
 {
     const int STEP_SIZE = 5;
     animation.SetDelayCount(1);
@@ -72,23 +72,18 @@ void CCharacter::OnMove()
     {
         if (isMovingRight)
         {
-            x += STEP_SIZE;
             animation.SelectBitmap(1);
-			if (x >= SIZE_X - 8 - animation.Width()) //牆的厚度:8
-			{
-				x = SIZE_X - 8 - animation.Width();
-			}
-			
+            if (map->IsEmpty(x + animation.Width() + 1, y)) {
+                x += STEP_SIZE;
+            }
         }
 
         if (isMovingLeft)  	//往左
         {
-            x -= STEP_SIZE;
             animation.SelectBitmap(2);
-			if (x <= 8)//牆的厚度:8
-			{
-				x = 8;
-			}
+            if (map->IsEmpty(x - 1, y)) {
+                x -= STEP_SIZE;
+            }
         }
 
         if (isMovingUp && y==floor && !rising)  			// 上升狀態
@@ -102,13 +97,13 @@ void CCharacter::OnMove()
         animation.Reset();
     }
 
-    jump();
+    jump(map);
 }
 
 //animation.Reset();
 /*  if (isMovingDown)
       y += STEP_SIZE;*/
-void CCharacter::jump()
+void CCharacter::jump(Map* map)
 {
     if (rising)  			// 上升狀態
     {

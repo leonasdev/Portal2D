@@ -4,10 +4,10 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class button
+	class Button
 	{
 	public:
-		button();
+		Button();
 		bool HitCharacter(CCharacter *eraser);						// 是否碰到擦子
 		bool IsClick();											// 是否活著
 		void LoadBitmap();										// 載入圖形
