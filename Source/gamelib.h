@@ -61,7 +61,8 @@
  *   2010-03-23 V4.6
  *      1. Rewrite CAudio with MCI commands to eliminate dependency with DirectMusic.
 */
-
+#ifndef GAMELIB_H
+#define GAMELIB_H
 /////////////////////////////////////////////////////////////////////////////
 // 定義遊戲可設定的環境與條件
 /////////////////////////////////////////////////////////////////////////////
@@ -348,3 +349,4 @@ private:
 };
 
 }
+#endif

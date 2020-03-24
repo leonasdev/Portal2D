@@ -219,5 +219,14 @@
     <Image Include="res\character_left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Start.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\presstostart.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -116,6 +116,10 @@ IDB_moveup              BITMAP                  "..\\res\\character.bmp"
 
 IDB_Button              BITMAP                  "..\\res\\button_up.bmp"
 
+IDB_START               BITMAP                  "C:\\Users\\s8952\\Desktop\\Portal2D\\RES\\Start.bmp"
+
+IDB_PRESS               BITMAP                  "C:\\Users\\s8952\\Desktop\\Portal2D\\RES\\presstostart.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
