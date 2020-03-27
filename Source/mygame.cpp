@@ -137,7 +137,7 @@ void CGameStateInit::OnShow()
     CDDraw::ReleaseBackCDC();					// ©ñ±¼ Back Plain ªº CDC*/
     start.SetTopLeft(0, 0);
     start.ShowBitmap();
-    press.SetTopLeft((SIZE_X - press.Width())/2, SIZE_Y - 100);
+    press.SetTopLeft((SIZE_X - press.Width())/2, (int)(SIZE_Y * 0.75));
     press.ShowBitmap();
 }
 
