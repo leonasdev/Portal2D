@@ -27,7 +27,7 @@ class CCharacter
     protected:
         CAnimation animation;		// 擦子的動畫
         int x, y;					// 擦子左上角座標
-        int	floor, velocity, initial_velocity;
+        int	velocity, initial_velocity;
         bool rising;
         bool isMovingDown;			// 是否正在往下移動
         bool isMovingLeft;			// 是否正在往左移動

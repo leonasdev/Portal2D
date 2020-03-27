@@ -42,15 +42,13 @@ void CCharacter::Initialize()
 {
     const int INITIAL_VELOCITY = 10;	// 初始上升速度
 
-    const int X_POS = 50;
-    const int Y_POS = SIZE_Y - 92;
-    const int FLOOR = SIZE_Y - 92;				// 地板座標
+    const int X_POS = 100;
+    const int Y_POS = 0;
 
     x = X_POS;
     y = Y_POS;
-    floor = FLOOR;
     initial_velocity = INITIAL_VELOCITY;
-    velocity = initial_velocity;
+    velocity = 1;
     rising = isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 }
 
@@ -73,7 +71,7 @@ void CCharacter::OnMove(Map* map)
         if (isMovingRight)
         {
             animation.SelectBitmap(1);
-            if (map->IsEmpty(x + animation.Width() + 1, y)) {
+			if (map->IsEmpty(x + animation.Width() + 1, animation.Height(), y, 1)) {
                 x += STEP_SIZE;
             }
         }
@@ -81,18 +79,18 @@ void CCharacter::OnMove(Map* map)
         if (isMovingLeft)  	//往左
         {
             animation.SelectBitmap(2);
-            if (map->IsEmpty(x - 1, y)) {
+			if (map->IsEmpty(x - 1, animation.Height(), y, 1)) {
                 x -= STEP_SIZE;
             }
         }
 
-        if (isMovingUp && y==floor && !rising)  			// 上升狀態
+        if (isMovingUp && !map->IsEmpty(x,1, y + animation.Height() + 1,animation.Width()))  			// 上升狀態
         {
 			rising = TRUE;
 			animation.SelectBitmap(3);
         }
     }
-    else  				// 下降狀態
+    else
     {
         animation.Reset();
     }
@@ -107,7 +105,7 @@ void CCharacter::jump(Map* map)
 {
     if (rising)  			// 上升狀態
     {
-		if (y == floor)
+		if (!map->IsEmpty(x, 1, y + animation.Height() + 1, animation.Width()))
 		{
 			velocity = initial_velocity; // 重設上升初始速度
 		}
@@ -124,15 +122,19 @@ void CCharacter::jump(Map* map)
     }
     else  				// 下降狀態
     {
-        if (y < floor )    // 當y座標還沒碰到地板
+        if (map->IsEmpty(x, 1, y + animation.Height() + 1, animation.Width()))    // 當y座標還沒碰到地板
         {
             y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
-            velocity++;		// 受重力影響，下次的下降速度增加
+			if (velocity <= 10)	//下降速度最快到10
+				velocity++;		// 受重力影響，下次的下降速度增加
+			else
+				velocity = 10;
         }
         else
         {
-            y = floor ;  // 當y座標低於地板，更正為地板上
-            velocity = initial_velocity; // 重設上升初始速度
+			y = y / TIMES;
+			y = y * TIMES;
+            //velocity = initial_velocity; // 重設上升初始速度
         }
     }
 }
