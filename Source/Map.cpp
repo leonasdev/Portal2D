@@ -12,20 +12,14 @@ namespace game_framework
         for (int i = 0; i < MAP_WIDTH; i++)	//﹍て皚
             for (int j = 0; j < MAP_HEIGHT; j++)
                 map[i][j] = 0;
-        for (int i = 0; i < MAP_HEIGHT; i++)
-        {
-            map[3][i] = 1;	// オ鲤纠
-            map[75][i] = 1;	// 鲤纠
-        }
-        for (int i = 0; i < MAP_WIDTH; i++)
-            map[i][41] = 1;	// 狾
-		for (int i = 14; i < 25; i++)
-			for (int j = 0; j < 29; j++)
-				map[j][i] = 1;	// 加
-		for (int i = 30; i <= 53; i++)
-		{
-			map[i][22] = 1;	//加い丁
-		}
+
+		CreateMap_1(0, 0, 87, 892);	// オ鲤纠
+		CreateMap_1(1505, 0, 1591, 891);	// 鲤纠
+		CreateMap_1(0, 827, 1591, 897);	// 加
+		CreateMap_1(90, 295, 590, 533);	// 加_オ
+		CreateMap_1(607, 453, 1131, 491);	// 加_い
+		CreateMap_1(1095, 228, 1488, 492);	// 加_
+
     }
     bool Map::IsEmpty(int x, int h, int y, int w)
     {
@@ -43,8 +37,18 @@ namespace game_framework
     {
 
     }
-	/*void Map::CreateMap_1(int *map[], int , int)
+	void Map::CreateMap_1(int x1, int y1, int x2, int y2)
 	{
-		for(int i=LeftTop;i<)
-	}*/
+		int gx1 = x1 / TIMES;
+		int gy1 = y1 / TIMES;
+		int gx2 = x2 / TIMES;
+		int gy2 = y2 / TIMES;
+		for (int i = gx1; i < gx2; i++)
+		{
+			for (int j = gy1; j < gy2; j++)
+			{
+				map[i][j] = 1;
+			}
+		}
+	}
 }
