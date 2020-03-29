@@ -17,9 +17,7 @@ Button::Button()
 {
     x = 1100;	//按鈕初始位置
     y = 800;
-
     is_click = false;	//是否被觸發
-
 }
 
 bool Button::HitCharacter(CCharacter* eraser)
