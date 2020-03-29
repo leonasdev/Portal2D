@@ -5,11 +5,13 @@ namespace game_framework
 class Portal
 {
     public:
-        Portal();
+        Portal(int, int, int);
         ~Portal();
     private:
+        int color;
+        CAnimation animation;
         int x, y;
-
+        
 };
 }
 #endif
