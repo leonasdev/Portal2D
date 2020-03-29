@@ -120,7 +120,7 @@ IDB_START               BITMAP                  "..\\RES\\Start.bmp"
 
 IDB_PRESS               BITMAP                  "..\\RES\\presstostart.bmp"
 
-IDB_ButtonDown          BITMAP                  "C:\\Users\\cjv\\Desktop\\git\\RES\\button_down.bmp"
+IDB_ButtonDown          BITMAP                  "..\\RES\\button_down.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -7,12 +7,11 @@
 #include "Portal.h"
 namespace game_framework
 {
+	Portal::Portal(int color, int x, int y)
+	{
+	}
 
-Portal::Portal()
-{
-}
-
-Portal::~Portal()
-{
-}
+	Portal::~Portal()
+	{
+	}
 }
