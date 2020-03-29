@@ -234,5 +234,11 @@
     <Image Include="RES\presstostart.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\button_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

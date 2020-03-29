@@ -82,7 +82,7 @@ void CGameStateInit::OnInit()
     //
     //logo.LoadBitmap(IDB_BACKGROUND);
     start.LoadBitmap(IDB_START);
-    press.LoadBitmap(IDB_PRESS,RGB(255,255,255));
+    press.LoadBitmap(IDB_PRESS, RGB(255, 255, 255));
     Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -116,7 +116,7 @@ void CGameStateInit::OnShow()
     //
     //logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
     //logo.ShowBitmap();
-    
+
     //
     // Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
     //
@@ -128,7 +128,7 @@ void CGameStateInit::OnShow()
     pDC->SetTextColor(RGB(255, 255, 0));
     pDC->TextOut(120, 220, "Please click mouse or press SPACE to begin.");
     pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
-    
+
     if (ENABLE_GAME_PAUSE)
         pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
 
@@ -137,7 +137,7 @@ void CGameStateInit::OnShow()
     CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC*/
     start.SetTopLeft(0, 0);
     start.ShowBitmap();
-    press.SetTopLeft((SIZE_X - press.Width())/2, (int)(SIZE_Y * 0.75));
+    press.SetTopLeft((SIZE_X - press.Width()) / 2, (int)(SIZE_Y * 0.75));
     press.ShowBitmap();
 }
 
@@ -243,6 +243,18 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+
+    character.OnMove(&map);
+
+    if (button.HitCharacter(&character))
+    {
+        button.SetIsClick(TRUE);
+    }
+    else
+    {
+        button.SetIsClick(FALSE);
+    }
+
     //
     // 如果希望修改cursor的樣式，則將下面程式的commment取消即可
     //
@@ -265,9 +277,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
     //
     // 移動擦子
     //
-    character.OnMove(&map);
-
-    //
     // 判斷擦子是否碰到球
     //
     //for (i = 0; i < NUMBALLS; i++)
@@ -287,7 +296,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
     //            GotoGameState(GAME_STATE_OVER);
     //        }
     //    }
-
     //
     // 移動彈跳的球
     //
@@ -298,11 +306,16 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
+    ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
+    button.LoadBitmap();
+    character.LoadBitmap();
+    ShowInitProgress(50);
+    level.LoadBitmap(IDB_level1);
+
     //
     // 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
     //     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
     //
-    ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
     //
     // 開始載入資料
     //
@@ -310,13 +323,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
     //for (i = 0; i < NUMBALLS; i++)
     //    ball[i].LoadBitmap();								// 載入第i個球的圖形
-	button.LoadBitmap();
-    character.LoadBitmap();
+
+
     //background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
     //
     // 完成部分Loading動作，提高進度
     //
-    ShowInitProgress(50);
     //Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
     //
     // 繼續載入其他資料
@@ -332,7 +344,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
     //
     // 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
     //
-    level.LoadBitmap(IDB_level1);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -444,6 +455,6 @@ void CGameStateRun::OnShow()
     level.ShowBitmap();		//關卡圖
     character.OnShow();
 
-	button.OnShow();
+    button.OnShow();
 }
 }

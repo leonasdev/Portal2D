@@ -7,87 +7,69 @@
 #include "CCharacter.h"
 #include "button.h"
 
-namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// button: Ball class
-	/////////////////////////////////////////////////////////////////////////////
+namespace game_framework
+{
+/////////////////////////////////////////////////////////////////////////////
+// button: Ball class
+/////////////////////////////////////////////////////////////////////////////
 
-	Button::Button()
-	{
-		is_click = false;
-		x = 300;
-		y = 468 - 18;//eraser->GetY2();//dx = dy = index = delay_counter = 0;
-	}
+Button::Button()
+{
+    x = 1100;	//按鈕初始位置
+    y = 800;
 
-	bool Button::HitCharacter(CCharacter *eraser)
-	{
-		// 檢測擦子所構成的矩形是否碰到球
-		return HitRectangle(eraser->GetX1(), eraser->GetY1(),
-			eraser->GetX2(), eraser->GetY2());
-	}
+    is_click = false;	//是否被觸發
 
-	bool Button::HitRectangle(int tx1, int ty1, int tx2, int ty2)
-	{
-		int x1 = x;//+ dx;				// 球的左上角x座標
-		int y1 = y;// +dy;				// 球的左上角y座標
-		int x2 = x1 + bmp.Width();	// 球的右下角x座標
-		int y2 = y1 + bmp.Height();	// 球的右下角y座標
-									//
-									// 檢測球的矩形與參數矩形是否有交集
-									//
-		return (tx2 >= x1 && tx1 <= x2 && ty2 >= y1 && ty1 <= y2);
-	}
+}
 
-	bool Button::IsClick()
-	{
-		return is_click;
-	}
+bool Button::HitCharacter(CCharacter* eraser)
+{
+    // 檢測角色所構成的矩形是否碰到球
+    return HitRectangle(eraser->GetX1(), eraser->GetY1(),
+                        eraser->GetX2(), eraser->GetY2());
+}
 
-	void Button::LoadBitmap()
-	{
-		bmp.LoadBitmap(IDB_Button, RGB(255,255,255));			// 載入球的圖形
-		//bmp_center.LoadBitmap(IDB_CENTER, RGB(0, 0, 0));	// 載入球圓心的圖形
-	}
+bool Button::HitRectangle(int tx1, int ty1, int tx2, int ty2)
+{
+    int x1 = x;//+ dx;				// 球的左上角x座標
+    int y1 = y;// +dy;				// 球的左上角y座標
+    int x2 = x1 + bmp.Width();		// 球的右下角x座標
+    int y2 = y1 + bmp.Height();		// 球的右下角y座標
+    //
+    // 檢測球的矩形與參數矩形是否有交集
+    //
+    return (tx2 >= x1 && tx1 <= x2 && ty2 >= y1 && ty1 <= y2);
+}
 
-	//void button::OnMove()
-	//{
-	//	if (!is_click)
-	//		return;
-	//	delay_counter--;
-	//	if (delay_counter < 0) {
-	//		delay_counter = delay;
-	//		//
-	//		// 計算球向對於圓心的位移量dx, dy
-	//		//
-	//		const int STEPS = 18;
-	//		static const int DIFFX[] = { 35, 32, 26, 17, 6, -6, -17, -26, -32, -34, -32, -26, -17, -6, 6, 17, 26, 32, };
-	//		static const int DIFFY[] = { 0, 11, 22, 30, 34, 34, 30, 22, 11, 0, -11, -22, -30, -34, -34, -30, -22, -11, };
-	//		index++;
-	//		if (index >= STEPS)
-	//			index = 0;
-	//		dx = DIFFX[index];
-	//		dy = DIFFY[index];
-	//	}
-	//}
+bool Button::IsClick()
+{
+    return is_click;	//判定是否被觸發
+}
 
-	//void button::SetDelay(int d)
-	//{
-	//	delay = d;
-	//}
+void Button::LoadBitmap()
+{
+    bmp.AddBitmap(IDB_Button, RGB(255, 255, 255));		//原始按鈕
+    bmp.AddBitmap(IDB_ButtonDown, RGB(255, 255, 255));	//按鈕觸發
+}
+void Button::SetIsClick(bool click)
+{
+    is_click = click;
+}
 
-	void Button::SetIsClick(bool click)
-	{
-		is_click = click;
-	}
+void Button::SetXY(int nx, int ny)	//設定按鈕位置
+{
+    x = nx;
+    y = ny;
+}
 
-	void Button::SetXY(int nx, int ny)
-	{
-		x = nx; y = ny;
-	}
+void Button::OnShow()
+{
+    if (is_click && !bmp.IsFinalBitmap())	//被按下且不是最後一張就換圖片
+        bmp.OnMove();
+    else if (!is_click)	//沒被觸發重置為第一張圖片
+        bmp.Reset();
 
-	void Button::OnShow()
-	{
-		bmp.SetTopLeft(x , y );
-		bmp.ShowBitmap();
-	}
+    bmp.SetTopLeft(x, y );
+    bmp.OnShow();
+}
 }
