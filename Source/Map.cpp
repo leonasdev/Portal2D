@@ -21,25 +21,25 @@ Map::Map() : x(0), y(0), MW(20), MH(20) //給予地圖左上角座標及每張小圖寬高
     CreateMap_1(1095, 228, 1488, 492);	// 二樓_右
 
 }
-bool Map::IsEmpty(int x, int h, int y, int w)
+bool Map::IsEmpty(int x, int h, int y, int w)	//x y左上角 h 圖高 w 圖寬
 {
-    int gx, gy;
+    int gx, gy;	//格座標
 
     for (int i = x; i < x + w; i++)
         for (int j = y; j < y + h; j++)
         {
-            gx = i / TIMES;
+            gx = i / TIMES;	//將點座標轉換成格座標
             gy = j / TIMES;
 
-            if (map[gx][gy] != 0)	return false;
+            if (map[gx][gy] != 0)	return false;	// 回傳是否無障礙物
         }
 
     return true;
 }
-void Map::LoadBitmap()
-{
-
-}
+//void Map::LoadBitmap()
+//{
+//
+//}
 void Map::CreateMap_1(int x1, int y1, int x2, int y2)
 {
     int gx1 = x1 / TIMES;

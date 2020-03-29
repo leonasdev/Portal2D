@@ -9,10 +9,6 @@
 
 namespace game_framework
 {
-/////////////////////////////////////////////////////////////////////////////
-// CCharacter: Eraser class
-/////////////////////////////////////////////////////////////////////////////
-
 CCharacter::CCharacter()
 {
     Initialize();
@@ -58,7 +54,6 @@ void CCharacter::LoadBitmap()
     animation.AddBitmap(IDB_moveright, RGB(255, 255, 255));	//©¹¥k
     animation.AddBitmap(IDB_moveleft, RGB(255, 255, 255));	//©¹¥ª
     animation.AddBitmap(IDB_moveup, RGB(255, 255, 255));
-    //animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
 }
 
 void CCharacter::OnMove(Map* map)

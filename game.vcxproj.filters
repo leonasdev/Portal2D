@@ -138,6 +138,9 @@
     <ClCompile Include="Source\Portal.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Box.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -183,6 +186,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Portal.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Box.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -244,6 +250,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap8.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -38,7 +38,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Dynamic</UseOfMfc>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
     <PlatformToolset>v142</PlatformToolset>
@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
@@ -310,6 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Button.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
@@ -341,6 +343,7 @@
     <Image Include="res\bitmap5.bmp" />
     <Image Include="res\bitmap6.bmp" />
     <Image Include="res\bitmap7.bmp" />
+    <Image Include="res\bitmap8.bmp" />
     <Image Include="RES\button_down.bmp" />
     <Image Include="RES\button_up.bmp" />
     <Image Include="res\character.bmp" />

@@ -223,6 +223,9 @@ void CGameStateRun::OnBeginState()
     const int BACKGROUND_X = 60;
     const int ANIMATION_SPEED = 15;
 
+    character.Initialize();
+
+
     //for (int i = 0; i < NUMBALLS; i++)  				// 設定球的起始座標
     //{
     //    int x_pos = i % BALL_PER_ROW;
@@ -231,7 +234,6 @@ void CGameStateRun::OnBeginState()
     //    ball[i].SetDelay(x_pos);
     //    ball[i].SetIsAlive(true);
     //}
-    character.Initialize();
     //background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
     //help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
     //hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -243,6 +245,7 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+    box.OnMove(&map);	//箱子慣性
 
     character.OnMove(&map);
 
@@ -311,6 +314,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
     character.LoadBitmap();
     ShowInitProgress(50);
     level.LoadBitmap(IDB_level1);
+    box.LoadBitmap();
 
     //
     // 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
@@ -452,9 +456,11 @@ void CGameStateRun::OnShow()
 
     //bball.OnShow();						// 貼上彈跳的球
 
-    level.ShowBitmap();		//關卡圖
-    character.OnShow();
+    level.ShowBitmap();	//關卡圖
+    character.OnShow();	//角色圖
 
-    button.OnShow();
+    button.OnShow();	//按鈕圖
+
+    box.OnShow();		//箱子
 }
 }

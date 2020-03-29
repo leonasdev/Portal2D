@@ -20,11 +20,11 @@ Button::Button()
     is_click = false;	//是否被觸發
 }
 
-bool Button::HitCharacter(CCharacter* eraser)
+bool Button::HitCharacter(CCharacter* character)
 {
     // 檢測角色所構成的矩形是否碰到球
-    return HitRectangle(eraser->GetX1(), eraser->GetY1(),
-                        eraser->GetX2(), eraser->GetY2());
+    return HitRectangle(character->GetX1(), character->GetY1(),
+                        character->GetX2(), character->GetY2());
 }
 
 bool Button::HitRectangle(int tx1, int ty1, int tx2, int ty2)
