@@ -63,7 +63,7 @@ void CCharacter::LoadBitmap()
 
 void CCharacter::OnMove(Map* map)
 {
-    const int STEP_SIZE = 5;
+    const int STEP_SIZE = 10;
     animation.SetDelayCount(1);
 
     if (isMovingRight || isMovingLeft || isMovingUp)  		//©¹¥k

@@ -17,7 +17,7 @@ namespace game_framework
 		int map[MAP_WIDTH][MAP_HEIGHT];		// 建立地圖矩陣的index
 		const int x, y;		// 大地圖的左上角x,y座標
 		const int MW, MH;	// 每張小地圖的寬高度
-		//void CreateMap_1(int* map[], int, int);
+		void CreateMap_1(int, int, int, int);
 	};
 }
 #endif
