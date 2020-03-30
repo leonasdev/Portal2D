@@ -202,14 +202,14 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun::CGameStateRun(CGame* g)
-    : CGameState(g), NUMBALLS(28)
+    : CGameState(g)
 {
-    ball = new CBall [NUMBALLS];
+    //ball = new CBall [NUMBALLS];
 }
 
 CGameStateRun::~CGameStateRun()
 {
-    delete [] ball;
+    //delete [] ball;
 }
 
 void CGameStateRun::OnBeginState()
@@ -224,7 +224,8 @@ void CGameStateRun::OnBeginState()
     const int ANIMATION_SPEED = 15;
 
     character.Initialize();
-
+	portal.OpenPortal(&map, 1491, 595);
+	portal.OpenPortal(&map, 87, 73);
 
     //for (int i = 0; i < NUMBALLS; i++)  				// 設定球的起始座標
     //{
@@ -458,9 +459,7 @@ void CGameStateRun::OnShow()
 
     level.ShowBitmap();	//關卡圖
     character.OnShow();	//角色圖
-
     button.OnShow();	//按鈕圖
-
     box.OnShow();		//箱子
 }
 }

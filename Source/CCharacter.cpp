@@ -67,9 +67,22 @@ void CCharacter::OnMove(Map* map)
         {
             animation.SelectBitmap(1);
 
-            if (map->IsEmpty(x + animation.Width() + 1, animation.Height(), y, 1))
+            switch (map->IsWhat(x + animation.Width() + 1, animation.Height(), y, 1))
             {
-                x += STEP_SIZE;
+				case 0:	// 空的
+					x += STEP_SIZE;
+					break;
+				case 1:	// 牆壁
+					// Do noting;
+					break;
+				case 2: // Portal 0
+					x = map->Find_PortalLoc('x', 3);	// 找Portal 1的x
+					y = map->Find_PortalLoc('y', 3);	// 找Portal 1的y
+					break;
+				case 3:	// Portal 1
+					x = map->Find_PortalLoc('x', 2);	// 找Portal 0的x
+					y = map->Find_PortalLoc('y', 2);	// 找Portal 0的y
+					break;
             }
         }
 
@@ -77,17 +90,46 @@ void CCharacter::OnMove(Map* map)
         {
             animation.SelectBitmap(2);
 
-            if (map->IsEmpty(x - 1, animation.Height(), y, 1))
+            switch (map->IsWhat(x - 1, animation.Height(), y, 1))
             {
-                x -= STEP_SIZE;
+			case 0:	// 空的
+				x -= STEP_SIZE;
+				break;
+			case 1:	// 牆壁
+				// Do noting;
+				break;
+			case 2: // Portal 0
+				x = map->Find_PortalLoc('x', 3);	// 找Portal 1的x
+				y = map->Find_PortalLoc('y', 3);	// 找Portal 1的y
+				break;
+			case 3:	// Portal 1
+				x = map->Find_PortalLoc('x', 2);	// 找Portal 0的x
+				y = map->Find_PortalLoc('y', 2);	// 找Portal 0的y
+				break;
             }
         }
 
-        if (isMovingUp && !map->IsEmpty(x, 1, y + animation.Height() + 1, animation.Width()))  			// 上升狀態
-        {
-            rising = TRUE;
-            animation.SelectBitmap(3);
-        }
+		if (isMovingUp) {
+			switch (map->IsWhat(x, 1, y + animation.Height() + 1, animation.Width()))  			// 上升狀態
+			{
+				animation.SelectBitmap(3);
+
+			case 0:	// 空的
+				// Do noting;
+				break;
+			case 1:	// 牆壁
+				rising = TRUE;
+				break;
+			case 2: // Portal 0
+				x = map->Find_PortalLoc('x', 3);	// 找Portal 1的x
+				y = map->Find_PortalLoc('y', 3);	// 找Portal 1的y
+				break;
+			case 3:	// Portal 1
+				x = map->Find_PortalLoc('x', 2);	// 找Portal 0的x
+				y = map->Find_PortalLoc('y', 2);	// 找Portal 0的y
+				break;
+			}
+		}
     }
     else
     {
@@ -104,7 +146,7 @@ void CCharacter::jump(Map* map)
 {
     if (rising)  			// 上升狀態
     {
-        if (!map->IsEmpty(x, 1, y + animation.Height() + 1, animation.Width()))
+        if (map->IsWhat(x, 1, y + animation.Height() + 1, animation.Width()) == 1)
         {
             velocity = initial_velocity; // 重設上升初始速度
         }
@@ -122,7 +164,7 @@ void CCharacter::jump(Map* map)
     }
     else  				// 下降狀態
     {
-        if (map->IsEmpty(x, 1, y + animation.Height() + 1, animation.Width()))    // 當y座標還沒碰到地板
+        if (map->IsWhat(x, 1, y + animation.Height() + 1, animation.Width()) == 0)    // 當y座標還沒碰到地板
         {
             y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
 

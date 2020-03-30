@@ -20,7 +20,7 @@ Box::Box()
 }
 void Box::OnMove(Map* map)
 {
-    if (map->IsEmpty(x, 1, y + bmp.Height() + 1, bmp.Width()))    // 當y座標還沒碰到地板
+    if (map->IsWhat(x, 1, y + bmp.Height() + 1, bmp.Width()) == 0)    // 當y座標還沒碰到地板
     {
         y += velocity;	// y軸下降(移動velocity個點，velocity的單位為 點/次)
 

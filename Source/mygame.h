@@ -44,6 +44,7 @@
 #include "CBall.h"
 #include "button.h"
 #include "CBouncingBall.h"
+#include "Portal.h"
 
 namespace game_framework
 {
@@ -101,20 +102,13 @@ class CGameStateRun : public CGameState
         void OnMove();									// 移動遊戲元素
         void OnShow();									// 顯示這個狀態的遊戲畫面
     private:
-        const int		NUMBALLS;	// 球的總數
-        Map				map;
+        Map				map;		// 地圖
         CCharacter		character;	// 角色
-
         CMovingBitmap	background;	// 背景圖
-        CMovingBitmap	help;		// 說明圖
-        CBall*			ball;		// 球的陣列
-        CMovingBitmap	corner;		// 角落圖
-
-        CInteger		hits_left;	// 剩下的撞擊數
-        CBouncingBall   bball;		// 反覆彈跳的球
         CMovingBitmap	level;		// 關卡圖
         Button	button;		//按鈕
         Box	box;	//箱子
+		Portal portal;
 
 };
 
